@@ -1,0 +1,46 @@
+﻿@model IMS.Models.ViewModels.DetailInsuranceRequest
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Insurance Detail</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Client</th>
+                <td>
+                    <a asp-controller="AdminClient" asp-action="Detail" asp-route-id="@Model.Client.Id">
+                        @Model.Client.FirstName @Model.Client.LastName
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Type of Insurance</th>
+                <td>@Model.InsuranceType</td>
+            </tr>
+            <tr>
+                <th>Insured Sum</th>
+                <td>@Model.Sum</td>
+            </tr>
+            <tr>
+                <th>Subject Of Insurance</th>
+                <td>@Model.Subject</td>
+            </tr>
+            <tr>
+                <th>Valid From</th>
+                <td>@Model.ValidFrom.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Valid Until</th>
+                <td>@Model.ValidUntil.ToShortDateString()</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mb-3 d-flex">
+        <a class="btn btn-dark" asp-controller="AdminInsurance" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    </div>
+</div>

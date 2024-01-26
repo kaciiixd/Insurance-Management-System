@@ -1,0 +1,46 @@
+﻿@model List<IMS.Models.Domain.Client>
+
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>All Clients</h1>
+    </div>
+</div>
+
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var client in Model)
+                {
+                    <tr>
+                        <td>@client.Id</td>
+                        <td>@client.FirstName</td>
+                        <td>@client.LastName</td>
+                        <td>
+                            <a asp-area="" asp-controller="AdminClient"
+                               asp-action="Detail"
+                               asp-route-id="@client.Id">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No clients found!</p>
+    }
+</div>

@@ -1,0 +1,96 @@
+﻿@model IMS.Models.ViewModels.DetailClientRequest
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Client Detail</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <table class="table">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>@Model.LastName</td>
+        </tr>
+        <tr>
+            <td>Date Of Birth</td>
+            <td>@Model.DateOfBirth</td>
+        </tr>
+        <tr>
+            <td>Contact Number</td>
+            <td>@Model.ContactNumber</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Model.Address</td>
+        </tr>
+    </table>
+
+    <a asp-area=""
+       asp-controller="AdminClient"
+       asp-action="Edit"
+       asp-route-id="@Model.Id"
+       class="btn btn-dark"
+       onclick="console.log('Edit URL:', this.href)">Edit</a>
+
+
+
+
+
+    <h2>Insurances</h2>
+    @if (Model.Insurances != null && Model.Insurances.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Insurance Type</th>
+                    <th>Sum</th>
+                    <th>Subject</th>
+                    <th>Valid From</th>
+                    <th>Valid Until</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var insurance in Model.Insurances)
+                {
+                    <tr>
+                        <td>@insurance.InsuranceType</td>
+                        <td>@insurance.Sum</td>
+                        <td>@insurance.Subject</td>
+                        <td>@insurance.ValidFrom.ToString("yyyy-MM-dd")</td>
+                        <td>@insurance.ValidUntil.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a asp-area=""
+                               asp-controller="AdminInsurance"
+                               asp-action="Edit"
+                               asp-route-id="@insurance.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No insurances found for this client.</p>
+    }
+</div>
+
+

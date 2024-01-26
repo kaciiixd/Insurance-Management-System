@@ -1,0 +1,53 @@
+﻿@model List<IMS.Models.Domain.Insurance>
+
+@{
+}
+
+@* Přidat filtr pro zobrazení jen podle typu pojištění, jména apod.
+ *@
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>All Insurances</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>InsuranceType</th>
+                    <th>Client</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var insurance in Model)
+                {
+                    <tr>
+                        <td>@insurance.Id</td>
+                        <td>@insurance.InsuranceType</td>
+                        <td>
+                            <div class="d-flex">
+                                <p>@insurance.Client.FirstName @insurance.Client.LastName</p>
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-area=""
+                               asp-controller="AdminInsurance"
+                               asp-action="Detail"
+                               asp-route-id="@insurance.Id">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No insurances found!</p>
+    }
+</div>

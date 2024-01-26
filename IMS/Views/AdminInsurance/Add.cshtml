@@ -1,0 +1,57 @@
+﻿@model IMS.Models.ViewModels.AddInsuranceRequest
+
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Add New Insurance</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <form method="post" class="row g-3" asp-controller="AdminInsurance" asp-action="Add">
+
+        <div class="mb-3">
+            <label class="form-label">Client</label>
+            <select class="form-select" asp-items="@Model.Clients" asp-for="SelectedClientId"></select>
+
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Type of Insurance</label>
+            <select class="form-select form-select-lg mb-3" asp-for="InsuranceType">
+                <option selected>Choose...</option>
+                <option value="Home">Home Insurance</option>
+                <option value="Car">Car Insurance</option>
+                <option value="Travel">Travel Insurance</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label @* for="validationDefault01" *@ class="form-label">Insured Sum</label>
+            <input type="number" class="form-control" asp-for="Sum">
+        </div>
+
+        <div class="col-md-6">
+            <label @* for="validationDefault02" *@ class="form-label">Subject Of Insurance</label>
+            <input type="text" class="form-control" asp-for="Subject">
+        </div>
+
+        <div class="col-md-6">
+            <label @* for="inputPassword4" *@ class="form-label">Valid From</label>
+            <input type="date" class="form-control" asp-for="ValidFrom">
+        </div>
+
+        <div class="col-md-6">
+            <label @* for="inputPassword4" *@ class="form-label">Valid Until</label>
+            <input type="date" class="form-control" asp-for="ValidUntil">
+        </div>
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-dark">Create</button>
+        </div>
+    </form>
+</div>
